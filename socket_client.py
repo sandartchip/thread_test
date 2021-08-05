@@ -2,9 +2,9 @@
 import socket
 import random
 
-HOST = 'localhost'
+HOST = 'apple.snu.ac.kr'
 
-PORT = 50007
+PORT = 8999
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM ) as s:
     s.connect( (HOST, PORT) )

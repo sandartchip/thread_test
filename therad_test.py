@@ -1,30 +1,29 @@
+import asyncio
+import time
 
-import threading, queue, time
+async def find_users_sync(n):
+    num=0
+    for i in range(1, 1000000000):
+        num += i
+        #await asyncio.sleep(1)
 
-data = 0
+    print(f'> 총 {num} 명 사용자 동기 조회 완료!')
 
-lock = threading.Lock()
 
-def generator(start, end):
-    global data;
+async def process_sync():
+    start =time.time()
 
-    for i in range(start, end, 1):
-        lock.acquire() # lock 설정, 다음 이 lock 호출할 때 쓰레드는 대기
+    await find_users_sync(6)
+    await find_users_sync(2)
+    await find_users_sync(4)
+    await find_users_sync(5)
 
-        buf = data
-        time.sleep(0.01)
-        data = buf + 1
+    end = time.time()
+    print(f'>>> 비동기 처리 소요시간{ end-start }')
 
-        lock.release()
+if __name__ == '__main__':
 
-# generator 함수를 두 개의 쓰레드로 실행함
-t1 = threading.Thread(target=generator, args = (1, 10))
-t2 = threading.Thread(target=generator, args = (1, 10))
+    asyncio.run( process_sync() )
 
-t1.start()
-t2.start()
 
-t1.join()
-t2.join()
 
-print(data)
