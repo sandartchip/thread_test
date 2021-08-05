@@ -34,4 +34,8 @@ if __name__ == "__main__":
 
 
     end = time.time()
+<<<<<<< HEAD
     print(f'>>> 비동기 처리 소요시간{ end-start }')
+=======
+    print(f'>>> 비동기 처리 소요시간{ end-start }')
+>>>>>>> ebbaa7dad79e364bfa499c2214dc13f21c28e7ae
